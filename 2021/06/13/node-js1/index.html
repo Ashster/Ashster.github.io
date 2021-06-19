@@ -1,0 +1,212 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>node.js学习（一） | 菜菜の小屋</title><meta name="keywords" content="nodejs"><meta name="author" content="Ashster"><meta name="copyright" content="Ashster"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="node.js基础概念1.什么是node.js?node.js是一个基于Chrome V8引擎的JavaScript运行环境 node.js使用了一个事件驱动、非阻塞式的I&#x2F;O模型，使其轻量又高效 1.1 在node.js中运行JavaScript和在Chrome中运行JavaScript有什么不同？首先，因为Chrome浏览器和Node.js用的是同样的JavaScript引擎模型，所以在这两个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="node.js学习（一）">
+<meta property="og:url" content="http://example.com/2021/06/13/node-js1/index.html">
+<meta property="og:site_name" content="菜菜の小屋">
+<meta property="og:description" content="node.js基础概念1.什么是node.js?node.js是一个基于Chrome V8引擎的JavaScript运行环境 node.js使用了一个事件驱动、非阻塞式的I&#x2F;O模型，使其轻量又高效 1.1 在node.js中运行JavaScript和在Chrome中运行JavaScript有什么不同？首先，因为Chrome浏览器和Node.js用的是同样的JavaScript引擎模型，所以在这两个">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/%E8%83%8C%E6%99%AF4.JPG">
+<meta property="article:published_time" content="2021-06-13T08:59:44.000Z">
+<meta property="article:modified_time" content="2021-06-15T13:15:05.671Z">
+<meta property="article:author" content="Ashster">
+<meta property="article:tag" content="nodejs">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/%E8%83%8C%E6%99%AF4.JPG"><link rel="shortcut icon" href="/img/forest.png"><link rel="canonical" href="http://example.com/2021/06/13/node-js1/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'node.js学习（一）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-06-15 21:15:05'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/iconsun.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/%E8%83%8C%E6%99%AF4.JPG')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">菜菜の小屋</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">node.js学习（一）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-06-13T08:59:44.000Z" title="发表于 2021-06-13 16:59:44">2021-06-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-06-15T13:15:05.671Z" title="更新于 2021-06-15 21:15:05">2021-06-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/nodejs/">nodejs</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="node.js学习（一）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="node-js基础概念"><a href="#node-js基础概念" class="headerlink" title="node.js基础概念"></a>node.js基础概念</h2><h3 id="1-什么是node-js"><a href="#1-什么是node-js" class="headerlink" title="1.什么是node.js?"></a>1.什么是node.js?</h3><p>node.js是一个基于<strong>Chrome V8引擎</strong>的JavaScript运行环境</p>
+<p>node.js使用了一个<strong>事件驱动</strong>、<strong>非阻塞式的I/O模型</strong>，使其轻量又高效</p>
+<h4 id="1-1-在node-js中运行JavaScript和在Chrome中运行JavaScript有什么不同？"><a href="#1-1-在node-js中运行JavaScript和在Chrome中运行JavaScript有什么不同？" class="headerlink" title="1.1 在node.js中运行JavaScript和在Chrome中运行JavaScript有什么不同？"></a>1.1 在node.js中运行JavaScript和在Chrome中运行JavaScript有什么不同？</h4><p>首先，因为Chrome浏览器和Node.js用的是同样的JavaScript引擎模型，所以在这两个地方写js，<strong>基本上没有什么不同</strong>。</p>
+<p>不同在于：</p>
+<ul>
+<li>node.js没有浏览器API，即document，window等等</li>
+<li>加了许多node.js专属API，比如文件系统、进程等等。</li>
+</ul>
+<p>对于开发者来说，Node.js：</p>
+<ul>
+<li>在Chrome写JS是控制整个浏览器</li>
+<li>在Node.js中写JS，控制的是整个计算机</li>
+</ul>
+<h3 id="2-commonJS模块规范"><a href="#2-commonJS模块规范" class="headerlink" title="2.commonJS模块规范"></a>2.commonJS模块规范</h3><h4 id="2-1-没有commonJS时的js加载方式"><a href="#2-1-没有commonJS时的js加载方式" class="headerlink" title="2.1 没有commonJS时的js加载方式"></a>2.1 没有commonJS时的js加载方式</h4><p>没有commonJS之前，加载js的方法是利用<script>标签来实现</p>
+<p>但是利用<script>标签加载js会有一些问题：</p>
+<ul>
+<li>脚本变多的时候，需要手动管理加载顺序</li>
+<li>不同脚本之间的逻辑调用，需要通过全局变量的方式</li>
+<li>如果没有html，就没有<script>标签，这时候该如何加载js呢？</li>
+</ul>
+<h4 id="2-2-commonJS模块规范"><a href="#2-2-commonJS模块规范" class="headerlink" title="2.2 commonJS模块规范"></a>2.2 commonJS模块规范</h4><p>Node应用是由模块组成，采用CommonJS模块规范。</p>
+<p>每个文件就是一个模块，有自己的作用域。在一个文件里面定义的变量、函数、类都是私有的，对其他文件不可见。</p>
+<p>CommonJS规范规定，每个模块内部，<strong>module变量代表当前模块</strong>。</p>
+<p><strong>module变量是一个对象</strong>，他的exports属性，即<strong>module.exports是对外的接口</strong>。</p>
+<p>加载某个模块，其实就是加载该模块的module.exports属性</p>
+<p><strong>require用来加载模块</strong></p>
+<p>CommonJS模块特点：</p>
+<ul>
+<li><p>所有代码都运行在模块作用域，不会污染全局作用域</p>
+</li>
+<li><p>模块可以多次加载，但是只会在第一次加载的时候运行一次，之后运行结果被缓存，以后再加载这个模块时，会直接读取缓存结果，不会再次运行。想要再次运行这个模块就必须清除缓存。</p>
+</li>
+<li><p>模块加载按照其在代码中出现的顺序进行加载</p>
+</li>
+</ul>
+<h5 id="2-2-1-module对象"><a href="#2-2-1-module对象" class="headerlink" title="2.2.1 module对象"></a>2.2.1 module对象</h5><p>Node内部提供一个Module构造函数，所有模块都是Module的实例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Module构造函数</span></span><br><span class="line"><span class="comment">//每个模块都是Module的实例</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Module</span>(<span class="params">id,parent</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.id=id;</span><br><span class="line">    <span class="built_in">this</span>.exports=&#123;&#125;;</span><br><span class="line">    <span class="built_in">this</span>.parent=parent;</span><br><span class="line">    <span class="built_in">this</span>.filename=<span class="literal">null</span>;</span><br><span class="line">    <span class="built_in">this</span>.loaded=<span class="literal">false</span>;</span><br><span class="line">    <span class="built_in">this</span>.children=[];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports=Module;</span><br><span class="line"><span class="keyword">var</span> <span class="built_in">module</span>=<span class="keyword">new</span> Module(filename,parent);</span><br></pre></td></tr></table></figure>
+
+<p><strong>每个模块内部，都有一个module对象，代表当前模块</strong></p>
+<p><strong>module.exports属性</strong>表示当前模块<strong>对外输出的接口</strong>，当其他文件加载该模块时，实际上就是读取module.exports变量</p>
+<h5 id="2-2-1-exports变量"><a href="#2-2-1-exports变量" class="headerlink" title="2.2.1 exports变量"></a>2.2.1 exports变量</h5><p>Node为每个模块提供一个exports变量，指向module.exports</p>
+<p>也就是说 <strong>exports实际上就是module.exports</strong></p>
+<p>node导出模块中输出变量有两种方式</p>
+<ul>
+<li>exports.xxx=xxx</li>
+<li>module.exports={xxx}</li>
+</ul>
+<p>我们来对比一下这两种方式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;hello&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">world</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;world&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//在Node环境中，有两种方式可以在一个模块中输出变量</span></span><br><span class="line"><span class="comment">//1.对Module.exports进行赋值</span></span><br><span class="line">Module.exports=&#123;</span><br><span class="line">    <span class="attr">hello</span>:hello,</span><br><span class="line">    <span class="attr">world</span>:world</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//2.直接使用exports</span></span><br><span class="line"><span class="built_in">exports</span>.hello=hello;</span><br><span class="line"><span class="built_in">exports</span>.world=world;</span><br><span class="line"><span class="comment">//注意，不可以直接对exports进行赋值，如果直接对exports赋值是无效的，exports还是&#123;&#125;</span></span><br><span class="line"><span class="comment">//原因如下，Node运行机制</span></span><br><span class="line"><span class="comment">//首先Node会把整个代加载的xxx.js文件放入一个包装函数load中，在执行load()之前，Node已经准备好了module变量</span></span><br><span class="line"><span class="keyword">var</span> <span class="built_in">module</span>=&#123;</span><br><span class="line">    <span class="attr">id</span>:<span class="string">&#x27;xxx&#x27;</span>,</span><br><span class="line">    <span class="attr">exports</span>:&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> load=<span class="function"><span class="keyword">function</span>(<span class="params"><span class="built_in">exports</span>,<span class="built_in">module</span></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//在这里执行xxx.js的内容</span></span><br><span class="line">    <span class="comment">//最后返回该模块的exports</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">module</span>.exports;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//在默认形况下，Node准备的exports变量和module.exports变量实际为一个变量</span></span><br><span class="line"><span class="comment">//这个变量初始化为空对象&#123;&#125;</span></span><br><span class="line"><span class="keyword">var</span> <span class="built_in">exports</span>=load(<span class="built_in">module</span>.exports,<span class="built_in">module</span>)<span class="comment">//这里调用load函数返回module.exports</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//也就是说，Node给准备了一个空对象&#123;&#125;，你可以利用exports.xxx或者module.exports.xxx向里面加东西</span></span><br><span class="line"><span class="comment">//但是 如果我们要输出一个函数或者数组，采用exports=func()&#123;&#125;是无效的，必须采用module.exports</span></span><br><span class="line"><span class="built_in">module</span>.exports=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//结论</span></span><br><span class="line"><span class="comment">//如果要输出一个&#123;&#125;键值对象，用exports.xxx或者module.exports.xxx都可以</span></span><br><span class="line"><span class="comment">//如果要输出一个数组或者函数，就必须使用module.exports=xxx</span></span><br><span class="line"><span class="comment">//也就是说，直接对module.exports赋值，可以应对任何情况</span></span><br><span class="line"><span class="comment">//所以建议都使用module.exorts来对模块输出进行操作</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>总结</strong>，建议还是使用module.exports来对node导出模块进行操作，因为node在运行中，首先会对每个模块自动生成一个module对象，这个module对象中有一个初始化为空对象的exports属性，也就是module.exports，而exports是通过load函数加载模块的返回值，这个返回值恰好是module.exports，所以exports是指向module.exports，又因为这个初始值是个{}空对象，所以可以利用exports直接对这个对象进行添加东西，但是不能改变这个对象的本质，如果想让模块输出为函数或者数组，就必须从module.exports入手，改变module.exports才可以实现。</p>
+<h5 id="2-2-3-AMD与CommonJS规范的兼容性"><a href="#2-2-3-AMD与CommonJS规范的兼容性" class="headerlink" title="2.2.3 AMD与CommonJS规范的兼容性"></a>2.2.3 AMD与CommonJS规范的兼容性</h5><p>commonJS是同步加载模块，只有加载完成后才能执行后面的操作，因为Node.js主要用于服务器变成，模块文件一般已经存在于本机硬盘，加载起来较快，所以不需要异步加载，一般采用CommonJS</p>
+<p>AMD是非同步加载模块，允许指定回调函数，浏览器一般采用AMD规范，从服务器端异步加载模块</p>
+<h5 id="2-2-4-require命令"><a href="#2-2-4-require命令" class="headerlink" title="2.2.4 require命令"></a>2.2.4 require命令</h5><p>Node使用CommonJS模块规范，内置<strong>require命令用于加载模块文件</strong></p>
+<p><strong>require</strong>命令<strong>读入并执行</strong>一个JavaScript文件，然后<strong>返回该模块的exports对象</strong>，如果没有发现指定模块会报错。</p>
+<p>require模块加载机制</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//require模块加载机制</span></span><br><span class="line"><span class="comment">//1.计算模块路径</span></span><br><span class="line"><span class="comment">//2.如果模块在缓存中，则取出缓存</span></span><br><span class="line"><span class="comment">//3.加载模块</span></span><br><span class="line"><span class="comment">//4.输出模块的exports属性</span></span><br><span class="line"><span class="comment">//require模块其实内部调用的是Module._load方法</span></span><br><span class="line">Module._load=<span class="function"><span class="keyword">function</span>(<span class="params">request,parent,isMain</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//计算绝对路径</span></span><br><span class="line">    <span class="keyword">var</span> filename=Module._resolveFilename(request,parent);</span><br><span class="line">    <span class="comment">//第一步：如果有缓存，就直接取出缓存</span></span><br><span class="line">    <span class="keyword">var</span> cachedModule=Module._cache[filename];</span><br><span class="line">    <span class="keyword">if</span>(cachedModule)&#123;</span><br><span class="line">        <span class="keyword">return</span> cachedModule.exports;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//第二步：是否为内置模块</span></span><br><span class="line">    <span class="keyword">if</span>(NativeModule.exits(filename))&#123;</span><br><span class="line">        <span class="keyword">return</span> NativeModule.require(filename);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//第三步：生成模块实例 存入缓存</span></span><br><span class="line">    <span class="keyword">var</span> <span class="built_in">module</span>=<span class="keyword">new</span> Module(filename);</span><br><span class="line">    Module._cache[filename]=<span class="built_in">module</span>;</span><br><span class="line">    <span class="comment">//第四步：加载模块</span></span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="built_in">module</span>.load(filename);<span class="comment">//module.load是Module原型上的一个方法Module.prototype.load</span></span><br><span class="line">        hadException=<span class="literal">false</span>;</span><br><span class="line">    &#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(hadException)&#123;</span><br><span class="line">            <span class="keyword">delete</span> Module._cache[filename];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//第五步：输出模块的exports属性</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">module</span>.exports;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>require命令加载文件，<strong>后缀名默认为.js</strong></p>
+<p>第一次加载某个模块后，Node会缓存该模块，以后再加载就直接存缓存中取出该模块的module.exports属性。</p>
+<p>如果想多次加载运行某个模块，必须删除该模块的缓存</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//删除指定模块缓存</span></span><br><span class="line"><span class="keyword">delete</span> <span class="built_in">require</span>.cache[modulename];</span><br><span class="line"><span class="comment">//删除所有模块缓存</span></span><br><span class="line"><span class="built_in">Object</span>.keys(<span class="built_in">require</span>.cache).forEach(<span class="function"><span class="keyword">function</span>(<span class="params">key</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">delete</span> <span class="built_in">require</span>.cache[key];</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-npm包"><a href="#3-npm包" class="headerlink" title="3.npm包"></a>3.npm包</h3><p>创建一个npm包 npm init</p>
+<p>下载一个包 npm install xxx</p>
+<p>下载全部的dependencies，npm install</p>
+<p>卸载一个包 npm uninstall xxx</p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Ashster</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/06/13/node-js1/">http://example.com/2021/06/13/node-js1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">菜菜の小屋</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/nodejs/">nodejs</a></div><div class="post_share"><div class="social-share" data-image="/img/%E8%83%8C%E6%99%AF4.JPG" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/06/14/node-js2/"><img class="prev-cover" src="/img/%E8%83%8C%E6%99%AF4.JPG" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">node.js学习（二）</div></div></a></div><div class="next-post pull-right"><a href="/2021/05/31/css5/"><img class="next-cover" src="/img/%E8%83%8C%E6%99%AF4.JPG" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">CSS布局（三）flex</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/06/14/node-js2/" title="node.js学习（二）"><img class="cover" src="/img/%E8%83%8C%E6%99%AF4.JPG" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-14</div><div class="title">node.js学习（二）</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/iconsun.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Ashster</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Ashster"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Ashster" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:825130866@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#node-js%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text">node.js基础概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AFnode-js"><span class="toc-number">1.1.</span> <span class="toc-text">1.什么是node.js?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-%E5%9C%A8node-js%E4%B8%AD%E8%BF%90%E8%A1%8CJavaScript%E5%92%8C%E5%9C%A8Chrome%E4%B8%AD%E8%BF%90%E8%A1%8CJavaScript%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%EF%BC%9F"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 在node.js中运行JavaScript和在Chrome中运行JavaScript有什么不同？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-commonJS%E6%A8%A1%E5%9D%97%E8%A7%84%E8%8C%83"><span class="toc-number">1.2.</span> <span class="toc-text">2.commonJS模块规范</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E6%B2%A1%E6%9C%89commonJS%E6%97%B6%E7%9A%84js%E5%8A%A0%E8%BD%BD%E6%96%B9%E5%BC%8F"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 没有commonJS时的js加载方式</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/06/14/node-js2/" title="node.js学习（二）"><img src="/img/%E8%83%8C%E6%99%AF4.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="node.js学习（二）"/></a><div class="content"><a class="title" href="/2021/06/14/node-js2/" title="node.js学习（二）">node.js学习（二）</a><time datetime="2021-06-14T13:15:40.000Z" title="发表于 2021-06-14 21:15:40">2021-06-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/06/13/node-js1/" title="node.js学习（一）"><img src="/img/%E8%83%8C%E6%99%AF4.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="node.js学习（一）"/></a><div class="content"><a class="title" href="/2021/06/13/node-js1/" title="node.js学习（一）">node.js学习（一）</a><time datetime="2021-06-13T08:59:44.000Z" title="发表于 2021-06-13 16:59:44">2021-06-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/31/css5/" title="CSS布局（三）flex"><img src="/img/%E8%83%8C%E6%99%AF4.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CSS布局（三）flex"/></a><div class="content"><a class="title" href="/2021/05/31/css5/" title="CSS布局（三）flex">CSS布局（三）flex</a><time datetime="2021-05-31T11:22:54.000Z" title="发表于 2021-05-31 19:22:54">2021-05-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/31/css4/" title="CSS布局（二）三种基础布局"><img src="/img/%E8%83%8C%E6%99%AF4.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CSS布局（二）三种基础布局"/></a><div class="content"><a class="title" href="/2021/05/31/css4/" title="CSS布局（二）三种基础布局">CSS布局（二）三种基础布局</a><time datetime="2021-05-31T03:19:41.000Z" title="发表于 2021-05-31 11:19:41">2021-05-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/28/css3/" title="CSS布局（一）盒模型"><img src="/img/%E8%83%8C%E6%99%AF4.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CSS布局（一）盒模型"/></a><div class="content"><a class="title" href="/2021/05/28/css3/" title="CSS布局（一）盒模型">CSS布局（一）盒模型</a><time datetime="2021-05-28T02:10:53.000Z" title="发表于 2021-05-28 10:10:53">2021-05-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Ashster</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

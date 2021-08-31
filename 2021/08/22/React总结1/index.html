@@ -1,0 +1,219 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>菜菜の小屋 | 菜菜の小屋</title><meta name="author" content="Ashster"><meta name="copyright" content="Ashster"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="React总结（一）：React组件基础1. React事件机制React中JSX上写的事件并不会被绑定到对应的真实DOM中，而是统一的绑定到document上。事件发生后，通过事件冒泡冒泡到document处，React将事件内容封装并且交给真正的处理函数运行处理。React上的事件采用的是合成事件SyntheticEvent，而不是原生浏览器事件。 1.1 合成事件合成事件是React模拟原生">
+<meta property="og:type" content="article">
+<meta property="og:title" content="菜菜の小屋">
+<meta property="og:url" content="http://example.com/2021/08/22/React%E6%80%BB%E7%BB%931/index.html">
+<meta property="og:site_name" content="菜菜の小屋">
+<meta property="og:description" content="React总结（一）：React组件基础1. React事件机制React中JSX上写的事件并不会被绑定到对应的真实DOM中，而是统一的绑定到document上。事件发生后，通过事件冒泡冒泡到document处，React将事件内容封装并且交给真正的处理函数运行处理。React上的事件采用的是合成事件SyntheticEvent，而不是原生浏览器事件。 1.1 合成事件合成事件是React模拟原生">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/%E8%83%8C%E6%99%AF4.JPG">
+<meta property="article:published_time" content="2021-08-22T11:39:08.234Z">
+<meta property="article:modified_time" content="2021-08-22T11:39:09.784Z">
+<meta property="article:author" content="Ashster">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/%E8%83%8C%E6%99%AF4.JPG"><link rel="shortcut icon" href="/img/forest.png"><link rel="canonical" href="http://example.com/2021/08/22/React%E6%80%BB%E7%BB%931/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '菜菜の小屋',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-08-22 19:39:09'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/iconsun.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">31</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/%E8%83%8C%E6%99%AF4.JPG')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">菜菜の小屋</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">无题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-08-22T11:39:08.234Z" title="发表于 2021-08-22 19:39:08">2021-08-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-08-22T11:39:09.784Z" title="更新于 2021-08-22 19:39:09">2021-08-22</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="React总结（一）：React组件基础"><a href="#React总结（一）：React组件基础" class="headerlink" title="React总结（一）：React组件基础"></a>React总结（一）：React组件基础</h1><h2 id="1-React事件机制"><a href="#1-React事件机制" class="headerlink" title="1. React事件机制"></a>1. React事件机制</h2><p><strong>React中JSX上写的事件并不会被绑定到对应的真实DOM中，而是统一的绑定到document上。</strong><br><strong>事件发生后，通过事件冒泡冒泡到document处，React将事件内容封装并且交给真正的处理函数运行处理。</strong><br><strong>React上的事件采用的是合成事件SyntheticEvent，而不是原生浏览器事件。</strong></p>
+<h4 id="1-1-合成事件"><a href="#1-1-合成事件" class="headerlink" title="1.1 合成事件"></a>1.1 合成事件</h4><p>合成事件是React模拟原生DOM事件所有能力的一个事件对象，优点如下：</p>
+<ul>
+<li>兼容所有浏览器，具有更好的跨平台能力</li>
+<li>将事件统一存放在一个数组也就是事件池中，避免频繁的新增与删除（垃圾回收）</li>
+<li>方便react统一管理和事务机制</li>
+<li>对于原生浏览器事件，浏览器会给监听器创建一个事件对象，如果有很多个事件监听就需要分配很多的事件对象，会造成高额内存分配问题。对于合成事件，有一个专门的事件池来管理这些事件的合成与销毁，事件需要被使用时，就从事件池中复用对象，事件回调结束后，就销毁事件对象上的属性，以便于下次复用事件对象。</li>
+</ul>
+<p>合成事件与HTML原生事件区别：</p>
+<ul>
+<li>事件名称命名：原生事件为全小写，react事件采用小驼峰</li>
+<li>事件函数处理语法：原生事件为字符串，react事件为函数</li>
+<li>react事件必须采用even.preventDefault()来阻止默认行为。<br>不能采用event.stopPropagation或者是return false。</li>
+<li>事件执行顺序：原生事件先执行，合成事件后执行，合成事件会冒泡绑定到document上，所以尽量避免原生时间与合成事件混用，如果要阻止原生事件冒泡，可能会导致合成事件不执行，因为需要冒泡到document上合成事件才会执行。</li>
+</ul>
+<h4 id="1-2-React事件代理"><a href="#1-2-React事件代理" class="headerlink" title="1.2 React事件代理"></a>1.2 React事件代理</h4><p>React基于Vitrtual DOM实现了一个<strong>合成事件层</strong>SyntheticEvent层，定义的事件处理器会接收到一个合成事件对象的实例，它符合W3C标准，并且和原生浏览器事件具有相同的接口，支持冒泡机制，所有事件都是绑定在最外层上的。</p>
+<p>在React底层，主要对合成事件做了两件事：</p>
+<ul>
+<li><strong>事件委派</strong>：React会<strong>把所有的事件绑定到最外层</strong>，<strong>使用统一的事件监听器</strong>，这个事件监听器上维持了一个<strong>映射</strong>来保存所有组件内部事件监听和处理函数。</li>
+<li><strong>自动绑定</strong>：React组件中，每个<strong>方法</strong>的上下文都会指向该组件的实例，即<strong>自动绑定this为当前组件</strong>。</li>
+</ul>
+<h2 id="2-React-Hooks-解决代码复用"><a href="#2-React-Hooks-解决代码复用" class="headerlink" title="2.React Hooks 解决代码复用"></a>2.React Hooks 解决代码复用</h2><p>三种解决React代码复用的方式：高阶组件HOC，render props，hooks</p>
+<h4 id="2-1-React高阶组件HOC-是一个函数"><a href="#2-1-React高阶组件HOC-是一个函数" class="headerlink" title="2.1 React高阶组件HOC 是一个函数"></a>2.1 React高阶组件HOC 是一个函数</h4><p>高阶组件HOC是React中用于复用组件逻辑的一种高级技巧。HOC本身并不是React API的一部分，它是一种基于React的组合特性而形成的设计模式。<strong>HOC是一种组件的设计模式，HOC接受一个组件和额外的参数，返回一个新的组件。HOC是一个纯函数，没有副作用</strong></p>
+<ul>
+<li>优点：HOC函数包裹组件进行复用，不影响被包裹组件的内部逻辑。</li>
+<li>缺点：HOC传递给被包裹组件的props容易和被包裹后的组件重名，进而被覆盖</li>
+</ul>
+<h4 id="2-2-Render-props"><a href="#2-2-Render-props" class="headerlink" title="2.2 Render props"></a>2.2 Render props</h4><p>render prop指在React组件之间使用一个<strong>值为函数的prop</strong>共享代码的简单技术。</p>
+<ul>
+<li>优点：数据共享、代码复用，将组件内的state作为props传递给调用者，将渲染逻辑交给调用者</li>
+<li>缺点：无法在return语句外访问数据，嵌套写法不够优雅</li>
+</ul>
+<h4 id="2-3-Hooks"><a href="#2-3-Hooks" class="headerlink" title="2.3 Hooks"></a>2.3 Hooks</h4><p><strong>React Hooks是React 16.8新出的特性。可以在不使用class组件的情况下使用state以及其他React的特性。</strong>通过自定义hook，可以复用代码逻辑。常用的有<strong>useState,useEffect</strong>等</p>
+<ul>
+<li><p>优点：</p>
+<ul>
+<li>使用直观</li>
+<li>解决了hoc高阶函数props可能会被覆盖的问题</li>
+<li>解决了render props因共享数据出现嵌套地狱的问题</li>
+<li>解决了render props能在return之外使用数据的问题</li>
+</ul>
+<p>总结：React Hooks yyds！！！！！！！！</p>
+</li>
+</ul>
+<h2 id="3-React-Fiber协程"><a href="#3-React-Fiber协程" class="headerlink" title="3. React Fiber协程"></a>3. React Fiber协程</h2><p>Fiber成为协程或者是纤程。他和线程并不一样，线程拥有并行能力，协程本身没有并发或者并行能力，需要配合线程才能拥有并行能力。<strong>协程是一种控制流程的让出机制，在适当的时候让出CPU的执行权，让CPU能在这段时间去执行其他的操作</strong>。渲染的过程是可以被中断的，可以将控制权交给浏览器，让位给优先级高的让你无，浏览器空闲后再恢复渲染。</p>
+<p>场景：React V15在渲染的时候，会递归对比VirtualDOM树，找出需要变动的节点，然后同步一口气更新他们。这个过程期间，React会长期占用浏览器资源，这就会导致用户出发浏览器事件得不到相应，并且会导致掉帧，用户体验十分卡顿。</p>
+<p>为了解决这个问题，给用户一种很快的假象，协程应用而生。协程不让一个任务长期霸占资源。可以将浏览器的渲染、布局、绘制、资源加载、事件响应、脚本执行等都视作浏览器的“进程”，利用协程去调度策略合理的分配CPU资源，提高浏览器的响应速率，同时兼顾任务执行效率。</p>
+<p>React通过Fiber框架，让执行过程变成可中断的。</p>
+<ul>
+<li>适度让出CPU执行权，提高浏览器的响应速率，让浏览器及时响应用户的交互</li>
+<li>分批延时对DOM进行操作，可以避免一次性操纵大量DOM节点，优化用户体验</li>
+<li>给浏览器一些喘息机会，它会对代码进行编译优化JIT和热代码优化，或者对reflow进行修正</li>
+</ul>
+<h2 id="4-函数组件与类组件"><a href="#4-函数组件与类组件" class="headerlink" title="4. 函数组件与类组件"></a>4. 函数组件与类组件</h2><ul>
+<li><p>相同点</p>
+<p>函数组件和类组件都是组件。组件是React可以复用的最小代码片段/最小编码单元，他们都会返回要在页面中渲染的React元素。作为最小编码单元，在使用方式和最终呈现效果上都是完全一致的。类组件和函数组件可以相互改写（有状态时只能用类组件，或者用函数组件hooks）</p>
+</li>
+<li><p>不同点</p>
+<ul>
+<li><p>类组件是面向对象编程，主打继承、生命周期等核心概念</p>
+<p>函数组件是函数式编程，主打immutable（不变）、没有副作用、引用透明等特点</p>
+</li>
+<li><p>在React Hooks之前，如需生命周期、继承，必须使用类组件。有了React Hooks之后，生命周期概念淡出，函数组件可以完全取代类组件。并且继承并不是组件设计的最佳设计模式，官方推崇“组合优于继承”。总之，React Hooks函数组件完胜类组件。</p>
+</li>
+<li><p>性能上，类组件依靠shouleComponentUpdate阻断渲染来提升性能，而函数组件依靠React.memo缓存渲染结果提升性能。</p>
+</li>
+<li><p>函数组件少了类组件中繁杂的this的概念，减少学习成本，更轻量渐变，而且在Hooks的基础上提供了更细粒度的逻辑组织与复用。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-React-Class-组件-构造函数"><a href="#5-React-Class-组件-构造函数" class="headerlink" title="5. React Class 组件 构造函数"></a>5. React Class 组件 构造函数</h2><p>类组件构造函数有两个主要目的：</p>
+<ul>
+<li>通过将对象分配给this.state来初始化本地状态</li>
+<li>将事件处理程序方法绑定到实例上</li>
+</ul>
+<p>构造函数用来新建父类的this对象。<br>子类必须在constructor中调用super方法，否则子类会得不到this对象<br>子类没有自己的this对象，而是继承父类的this的对象，然后对他进行加工。<br>constructor()内部如果要使用this.props就将props传入，否则不用<br>js中bind每次都会返回一个新的函数，为了性能考虑，尽量都在constructor中bind事件</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Ashster</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/08/22/React%E6%80%BB%E7%BB%931/">http://example.com/2021/08/22/React%E6%80%BB%E7%BB%931/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">菜菜の小屋</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/%E8%83%8C%E6%99%AF4.JPG" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/08/22/js%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90/"><img class="prev-cover" src="/img/%E8%83%8C%E6%99%AF4.JPG" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info"></div></div></a></div><div class="next-post pull-right"><a href="/2021/08/22/React&amp;Vue/"><img class="next-cover" src="/img/%E8%83%8C%E6%99%AF4.JPG" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info"></div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/iconsun.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Ashster</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">31</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Ashster"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Ashster" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:825130866@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#React%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9AReact%E7%BB%84%E4%BB%B6%E5%9F%BA%E7%A1%80"><span class="toc-number">1.</span> <span class="toc-text">React总结（一）：React组件基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-React%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6"><span class="toc-number">1.1.</span> <span class="toc-text">1. React事件机制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-%E5%90%88%E6%88%90%E4%BA%8B%E4%BB%B6"><span class="toc-number">1.1.0.1.</span> <span class="toc-text">1.1 合成事件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-React%E4%BA%8B%E4%BB%B6%E4%BB%A3%E7%90%86"><span class="toc-number">1.1.0.2.</span> <span class="toc-text">1.2 React事件代理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-React-Hooks-%E8%A7%A3%E5%86%B3%E4%BB%A3%E7%A0%81%E5%A4%8D%E7%94%A8"><span class="toc-number">1.2.</span> <span class="toc-text">2.React Hooks 解决代码复用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-React%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6HOC-%E6%98%AF%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.0.1.</span> <span class="toc-text">2.1 React高阶组件HOC 是一个函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-Render-props"><span class="toc-number">1.2.0.2.</span> <span class="toc-text">2.2 Render props</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-Hooks"><span class="toc-number">1.2.0.3.</span> <span class="toc-text">2.3 Hooks</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-React-Fiber%E5%8D%8F%E7%A8%8B"><span class="toc-number">1.3.</span> <span class="toc-text">3. React Fiber协程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E4%B8%8E%E7%B1%BB%E7%BB%84%E4%BB%B6"><span class="toc-number">1.4.</span> <span class="toc-text">4. 函数组件与类组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-React-Class-%E7%BB%84%E4%BB%B6-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">1.5.</span> <span class="toc-text">5. React Class 组件 构造函数</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/08/31/js%E4%BD%9C%E7%94%A8%E5%9F%9F/" title="无题"><img src="/img/%E8%83%8C%E6%99%AF4.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2021/08/31/js%E4%BD%9C%E7%94%A8%E5%9F%9F/" title="无题">无题</a><time datetime="2021-08-31T10:55:14.655Z" title="发表于 2021-08-31 18:55:14">2021-08-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/31/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20url%E5%8A%A0%E8%BD%BD/" title="无题"><img src="/img/%E8%83%8C%E6%99%AF4.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2021/08/31/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20url%E5%8A%A0%E8%BD%BD/" title="无题">无题</a><time datetime="2021-08-31T10:55:14.652Z" title="发表于 2021-08-31 18:55:14">2021-08-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/31/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%961/" title="无题"><img src="/img/%E8%83%8C%E6%99%AF4.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2021/08/31/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%961/" title="无题">无题</a><time datetime="2021-08-31T10:55:14.645Z" title="发表于 2021-08-31 18:55:14">2021-08-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/31/JS%E6%95%B0%E7%BB%84%E5%9F%BA%E7%A1%80/" title="无题"><img src="/img/%E8%83%8C%E6%99%AF4.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2021/08/31/JS%E6%95%B0%E7%BB%84%E5%9F%BA%E7%A1%80/" title="无题">无题</a><time datetime="2021-08-31T10:55:14.634Z" title="发表于 2021-08-31 18:55:14">2021-08-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/31/JS%E5%8E%9F%E5%9E%8B%E9%93%BE/" title="无题"><img src="/img/%E8%83%8C%E6%99%AF4.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2021/08/31/JS%E5%8E%9F%E5%9E%8B%E9%93%BE/" title="无题">无题</a><time datetime="2021-08-31T10:55:14.630Z" title="发表于 2021-08-31 18:55:14">2021-08-31</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Ashster</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

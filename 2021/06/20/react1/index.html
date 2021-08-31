@@ -1,0 +1,183 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>react基础入门1 | 菜菜の小屋</title><meta name="keywords" content="react"><meta name="author" content="Ashster"><meta name="copyright" content="Ashster"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1.JSX简介JSX: JavaScript的语法扩展 JSX可以生成React元素,React中配合使用JSX可以更好的描述UI应该呈现出它应有交互的本质JSX看起来可能有些类似模板语言，但是他拥有JS的所有功能 1const element&#x3D;&lt;h1&gt;hello world&lt;&#x2F;h1&gt;;  1.1.1 为什么使用JSX？这要从React的逻辑来看，React认为渲染逻辑本质">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react基础入门1">
+<meta property="og:url" content="http://example.com/2021/06/20/react1/index.html">
+<meta property="og:site_name" content="菜菜の小屋">
+<meta property="og:description" content="1.JSX简介JSX: JavaScript的语法扩展 JSX可以生成React元素,React中配合使用JSX可以更好的描述UI应该呈现出它应有交互的本质JSX看起来可能有些类似模板语言，但是他拥有JS的所有功能 1const element&#x3D;&lt;h1&gt;hello world&lt;&#x2F;h1&gt;;  1.1.1 为什么使用JSX？这要从React的逻辑来看，React认为渲染逻辑本质">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/%E8%83%8C%E6%99%AF4.JPG">
+<meta property="article:published_time" content="2021-06-20T10:32:55.000Z">
+<meta property="article:modified_time" content="2021-06-20T11:53:37.545Z">
+<meta property="article:author" content="Ashster">
+<meta property="article:tag" content="react">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/%E8%83%8C%E6%99%AF4.JPG"><link rel="shortcut icon" href="/img/forest.png"><link rel="canonical" href="http://example.com/2021/06/20/react1/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'react基础入门1',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-06-20 19:53:37'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/iconsun.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">31</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/%E8%83%8C%E6%99%AF4.JPG')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">菜菜の小屋</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">react基础入门1</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-06-20T10:32:55.000Z" title="发表于 2021-06-20 18:32:55">2021-06-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-06-20T11:53:37.545Z" title="更新于 2021-06-20 19:53:37">2021-06-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/react/">react</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="react基础入门1"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="1-JSX简介"><a href="#1-JSX简介" class="headerlink" title="1.JSX简介"></a>1.JSX简介</h2><p>JSX: JavaScript的语法扩展</p>
+<p><strong>JSX可以生成React元素</strong>,React中配合使用JSX可以更好的描述UI应该呈现出它应有交互的本质<br>JSX看起来可能有些类似模板语言，但是<strong>他拥有JS的所有功能</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const element=&lt;h1&gt;hello world&lt;/h1&gt;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-1-1-为什么使用JSX？"><a href="#1-1-1-为什么使用JSX？" class="headerlink" title="1.1.1 为什么使用JSX？"></a>1.1.1 为什么使用JSX？</h4><p>这要从React的逻辑来看，<br>React认为渲染逻辑本质上与其他UI逻辑内在耦合，React并没有将标记与逻辑强行分离，<br>而是将标记和逻辑共同存放在称为“组件”的松散耦合单元。<br>React并不是强制要求使用JSX，但是使用JSX会更加的方便，视觉上也有辅助作用</p>
+<h4 id="1-1-2-在JSX中嵌入表达式"><a href="#1-1-2-在JSX中嵌入表达式" class="headerlink" title="1.1.2 在JSX中嵌入表达式"></a>1.1.2 在JSX中嵌入表达式</h4><p>我们上面已经说过了，<strong>JSX拥有JS的所有功能</strong><br>在JSX中，你可以<strong>通过一对大括号{}<strong>，在大括号内</strong>放置任意js表达式</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const name=&#123;</span><br><span class="line">	firstname:&#x27;Zhao&#x27;,</span><br><span class="line">    lastname:&#x27;sisi&#x27;</span><br><span class="line">&#125;</span><br><span class="line">function formatName(user)&#123;</span><br><span class="line">    return user.firstname+&#x27; &#x27;+user.lastname;</span><br><span class="line">&#125;</span><br><span class="line">const element=&lt;h1&gt;hello,&#123;formatName(name)&#125;&lt;/h1&gt;</span><br><span class="line">ReactDOM.render(</span><br><span class="line">	element,</span><br><span class="line">    document.getElementById(&#x27;root&#x27;)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-1-3-JSX也是一个表达式"><a href="#1-1-3-JSX也是一个表达式" class="headerlink" title="1.1.3 JSX也是一个表达式"></a>1.1.3 JSX也是一个表达式</h4><p>在编译之后，JSX表达式会被转换成普通的JavaScript函数调用，并且对其取值后得到JavaScript对象</p>
+<p>也就是说，可以在if或者for循环的代码块中使用JSX</p>
+<ul>
+<li>将JSX赋值给变量</li>
+<li>将JSX作为参数传入</li>
+<li>从函数返回JSX</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function getGreeting(user)&#123;</span><br><span class="line">    if(user)&#123;</span><br><span class="line">        return &lt;h1&gt;Hello,&#123;formatName(user)&#125;&lt;/h1&gt;</span><br><span class="line">    &#125;</span><br><span class="line">    return &lt;h1&gt;Hello,Stranger&lt;/h1&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-1-4"><a href="#1-1-4" class="headerlink" title="1.1.4"></a>1.1.4</h4><p>JSX设置特定属性的值有两种方式</p>
+<ul>
+<li>使用引号，将属性值指定为字符串字面量</li>
+<li>使用大括号，在属性值中插入一个JS表达式</li>
+</ul>
+<p>注意，对于同一个属性值，两种方式只能使用一个。</p>
+<p>React使用小驼峰命名法来定义属性名</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const element=&lt;div tabIndex=&quot;0&quot;&gt;&lt;/div&gt;;</span><br><span class="line">const element=&lt;img src=&#123;user.avatarUrl&#125;&gt;&lt;/img&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-元素渲染"><a href="#2-元素渲染" class="headerlink" title="2. 元素渲染"></a>2. 元素渲染</h2><p>元素：元素是构成React的最小单元，元素描述了在屏幕上显示的内容</p>
+<p>与浏览器DOM元素不同，React元素是创建开销极小的普通对象。<br>React DOM会负责更新DOM来与React元素保持一致</p>
+<h4 id="2-2-1-将一个元素渲染为DOM"><a href="#2-2-1-将一个元素渲染为DOM" class="headerlink" title="2.2.1 将一个元素渲染为DOM"></a>2.2.1 将一个元素渲染为DOM</h4><p>采用ReactDOM.render进行将react 元素渲染到指定位置<br>一般都是渲染到根节点</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const element=&lt;h1&gt;hello,world&lt;/h1&gt;</span><br><span class="line">ReactDOM.render(element,document.getElementById(&#x27;root&#x27;))</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-2-更新已渲染的元素"><a href="#2-2-2-更新已渲染的元素" class="headerlink" title="2.2.2 更新已渲染的元素"></a>2.2.2 更新已渲染的元素</h4><p>React元素一旦被创建，就无法改变他的子元素或者属性，是<strong>不可变对象</strong><br>每个元素就像是电影的一个单帧，他只代表了某个时刻的UI情况</p>
+<p>目前，更新UI的唯一方式就是创建一个全新的元素，然后将他传入ReactDOM.render<br>也就是说，更新一次就要调用一次ReactDOM.render</p>
+<p>后续我们会学习只调用一次ReactDOM.render的方法，把代码封装到有状态组件中去</p>
+<p>比如，计时器的例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function tick()&#123;</span><br><span class="line">    const element=(</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;h1&gt;hello,now&lt;/h1&gt;</span><br><span class="line">            &lt;h2&gt;it is &#123;new Date().toLocaleTimeString()&#125;&lt;/h2&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">    ReactDOM.render(element,document.getElementById(&#x27;root&#x27;))</span><br><span class="line">&#125;</span><br><span class="line">setInterval(tick,1000)</span><br><span class="line">//每秒重新建一个元素，传入ReactDOM.render中，也就是每秒调用一次ReactDOM.render</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-3-React-只更新它需要更新的部分"><a href="#2-2-3-React-只更新它需要更新的部分" class="headerlink" title="2.2.3 React 只更新它需要更新的部分"></a>2.2.3 React 只更新它需要更新的部分</h4><p>React DOM 会将元素和它的子元素与它们之前的状态进行比较，并只会进行必要的更新来使 DOM 达到预期的状态。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Ashster</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/06/20/react1/">http://example.com/2021/06/20/react1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">菜菜の小屋</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/react/">react</a></div><div class="post_share"><div class="social-share" data-image="/img/%E8%83%8C%E6%99%AF4.JPG" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/06/21/react2/"><img class="prev-cover" src="/img/%E8%83%8C%E6%99%AF4.JPG" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">react基础</div></div></a></div><div class="next-post pull-right"><a href="/2021/06/14/node-js2/"><img class="next-cover" src="/img/%E8%83%8C%E6%99%AF4.JPG" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">node.js学习（二）</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/06/24/react-hook1/" title="react-hook基础"><img class="cover" src="/img/%E8%83%8C%E6%99%AF4.JPG" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-24</div><div class="title">react-hook基础</div></div></a></div><div><a href="/2021/06/26/react-hook2/" title="react-hook基础2"><img class="cover" src="/img/%E8%83%8C%E6%99%AF4.JPG" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-26</div><div class="title">react-hook基础2</div></div></a></div><div><a href="/2021/06/21/react2/" title="react基础"><img class="cover" src="/img/%E8%83%8C%E6%99%AF4.JPG" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-21</div><div class="title">react基础</div></div></a></div><div><a href="/2021/06/22/react3/" title="react3"><img class="cover" src="/img/%E8%83%8C%E6%99%AF4.JPG" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-22</div><div class="title">react3</div></div></a></div><div><a href="/2021/06/23/react4/" title="React diff&key的作用"><img class="cover" src="/img/%E8%83%8C%E6%99%AF4.JPG" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-23</div><div class="title">React diff&key的作用</div></div></a></div><div><a href="/2021/06/23/react5/" title="react基础4"><img class="cover" src="/img/%E8%83%8C%E6%99%AF4.JPG" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-23</div><div class="title">react基础4</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/iconsun.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Ashster</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">31</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Ashster"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Ashster" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:825130866@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-JSX%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">1.JSX简介</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-1-%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8JSX%EF%BC%9F"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.1.1 为什么使用JSX？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-2-%E5%9C%A8JSX%E4%B8%AD%E5%B5%8C%E5%85%A5%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.0.2.</span> <span class="toc-text">1.1.2 在JSX中嵌入表达式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-3-JSX%E4%B9%9F%E6%98%AF%E4%B8%80%E4%B8%AA%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.0.3.</span> <span class="toc-text">1.1.3 JSX也是一个表达式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-4"><span class="toc-number">1.0.4.</span> <span class="toc-text">1.1.4</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%85%83%E7%B4%A0%E6%B8%B2%E6%9F%93"><span class="toc-number">2.</span> <span class="toc-text">2. 元素渲染</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-1-%E5%B0%86%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0%E6%B8%B2%E6%9F%93%E4%B8%BADOM"><span class="toc-number">2.0.1.</span> <span class="toc-text">2.2.1 将一个元素渲染为DOM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-%E6%9B%B4%E6%96%B0%E5%B7%B2%E6%B8%B2%E6%9F%93%E7%9A%84%E5%85%83%E7%B4%A0"><span class="toc-number">2.0.2.</span> <span class="toc-text">2.2.2 更新已渲染的元素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-3-React-%E5%8F%AA%E6%9B%B4%E6%96%B0%E5%AE%83%E9%9C%80%E8%A6%81%E6%9B%B4%E6%96%B0%E7%9A%84%E9%83%A8%E5%88%86"><span class="toc-number">2.0.3.</span> <span class="toc-text">2.2.3 React 只更新它需要更新的部分</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/08/31/js%E4%BD%9C%E7%94%A8%E5%9F%9F/" title="无题"><img src="/img/%E8%83%8C%E6%99%AF4.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2021/08/31/js%E4%BD%9C%E7%94%A8%E5%9F%9F/" title="无题">无题</a><time datetime="2021-08-31T10:55:14.655Z" title="发表于 2021-08-31 18:55:14">2021-08-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/31/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20url%E5%8A%A0%E8%BD%BD/" title="无题"><img src="/img/%E8%83%8C%E6%99%AF4.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2021/08/31/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20url%E5%8A%A0%E8%BD%BD/" title="无题">无题</a><time datetime="2021-08-31T10:55:14.652Z" title="发表于 2021-08-31 18:55:14">2021-08-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/31/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%961/" title="无题"><img src="/img/%E8%83%8C%E6%99%AF4.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2021/08/31/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%961/" title="无题">无题</a><time datetime="2021-08-31T10:55:14.645Z" title="发表于 2021-08-31 18:55:14">2021-08-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/31/JS%E6%95%B0%E7%BB%84%E5%9F%BA%E7%A1%80/" title="无题"><img src="/img/%E8%83%8C%E6%99%AF4.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2021/08/31/JS%E6%95%B0%E7%BB%84%E5%9F%BA%E7%A1%80/" title="无题">无题</a><time datetime="2021-08-31T10:55:14.634Z" title="发表于 2021-08-31 18:55:14">2021-08-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/31/JS%E5%8E%9F%E5%9E%8B%E9%93%BE/" title="无题"><img src="/img/%E8%83%8C%E6%99%AF4.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2021/08/31/JS%E5%8E%9F%E5%9E%8B%E9%93%BE/" title="无题">无题</a><time datetime="2021-08-31T10:55:14.630Z" title="发表于 2021-08-31 18:55:14">2021-08-31</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Ashster</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

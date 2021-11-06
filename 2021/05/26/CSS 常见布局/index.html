@@ -1,0 +1,211 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CSS面试常见布局 | 菜菜の小屋</title><meta name="keywords" content="CSS,面试"><meta name="author" content="Ashster"><meta name="copyright" content="Ashster"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="CSS 常见布局1.水平垂直居中1.1行内式父级元素必须是block，水平居中给父元素添加属性text-align:center 垂直居中：设置本身line-height和height一致即可 1.2 块级，已知宽高 父：relative   子：absolute+left:50%+height:50%+子元素宽高一半的负margin    父：relative 子：absolute+left r">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS面试常见布局">
+<meta property="og:url" content="http://example.com/2021/05/26/CSS%20%E5%B8%B8%E8%A7%81%E5%B8%83%E5%B1%80/index.html">
+<meta property="og:site_name" content="菜菜の小屋">
+<meta property="og:description" content="CSS 常见布局1.水平垂直居中1.1行内式父级元素必须是block，水平居中给父元素添加属性text-align:center 垂直居中：设置本身line-height和height一致即可 1.2 块级，已知宽高 父：relative   子：absolute+left:50%+height:50%+子元素宽高一半的负margin    父：relative 子：absolute+left r">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/%E8%83%8C%E6%99%AF4.JPG">
+<meta property="article:published_time" content="2021-05-26T10:55:42.000Z">
+<meta property="article:modified_time" content="2021-11-06T10:37:19.682Z">
+<meta property="article:author" content="Ashster">
+<meta property="article:tag" content="CSS">
+<meta property="article:tag" content="面试">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/%E8%83%8C%E6%99%AF4.JPG"><link rel="shortcut icon" href="/img/forest.png"><link rel="canonical" href="http://example.com/2021/05/26/CSS%20%E5%B8%B8%E8%A7%81%E5%B8%83%E5%B1%80/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'CSS面试常见布局',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-11-06 18:37:19'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/iconsun.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">38</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/%E8%83%8C%E6%99%AF4.JPG')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">菜菜の小屋</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">CSS面试常见布局</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-05-26T10:55:42.000Z" title="发表于 2021-05-26 18:55:42">2021-05-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-11-06T10:37:19.682Z" title="更新于 2021-11-06 18:37:19">2021-11-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/CSS/">CSS</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/CSS/%E9%9D%A2%E8%AF%95/">面试</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="CSS面试常见布局"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="CSS-常见布局"><a href="#CSS-常见布局" class="headerlink" title="CSS 常见布局"></a>CSS 常见布局</h1><h2 id="1-水平垂直居中"><a href="#1-水平垂直居中" class="headerlink" title="1.水平垂直居中"></a>1.水平垂直居中</h2><h3 id="1-1行内式"><a href="#1-1行内式" class="headerlink" title="1.1行内式"></a>1.1行内式</h3><p>父级元素必须是block，水平居中给父元素添加属性text-align:center</p>
+<p>垂直居中：设置本身line-height和height一致即可</p>
+<h3 id="1-2-块级，已知宽高"><a href="#1-2-块级，已知宽高" class="headerlink" title="1.2 块级，已知宽高"></a>1.2 块级，已知宽高</h3><ul>
+<li>父：relative   子：absolute+left:50%+height:50%+子元素宽高一半的负margin</li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8cc55312dcda4924abdfc7a8bc20db26~tplv-k3u1fbpfcp-watermark.awebp" alt="img"></p>
+<ul>
+<li>父：relative 子：absolute+left right top bottom:0+margin:auto</li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f593f38b4eb74fb4a8a1b95cc0476e87~tplv-k3u1fbpfcp-watermark.awebp" alt="img"></p>
+<ul>
+<li>父：relative 子：absolute+left:calc(50%-width/2) +top:calc(50%-height/2)</li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e69e2c2e35f74ae6a0c38949d627798e~tplv-k3u1fbpfcp-watermark.awebp" alt="img"></p>
+<h3 id="1-3-块级-宽高未知"><a href="#1-3-块级-宽高未知" class="headerlink" title="1.3 块级 宽高未知"></a>1.3 块级 宽高未知</h3><ul>
+<li>父：relative 子：absolute+left:50%+top:50%+transform:translate(-50%,-50%)</li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e69e2c2e35f74ae6a0c38949d627798e~tplv-k3u1fbpfcp-watermark.awebp" alt="img"></p>
+<ul>
+<li>父：flex + justify-content:center+align-items:center</li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/070f1c7a61ec4cbd8aa2d9b000f8dcd4~tplv-k3u1fbpfcp-watermark.awebp" alt="img"></p>
+<ul>
+<li>父：display:grid 子：justify-self:center align-self:center</li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1b509172aabc4a3580c3eb57953755f5~tplv-k3u1fbpfcp-watermark.awebp" alt="img"></p>
+<h2 id="2-两栏布局"><a href="#2-两栏布局" class="headerlink" title="2. 两栏布局"></a>2. 两栏布局</h2><ul>
+<li>float+overfolw BFC原理</li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4f90447388404ebd9a9c238317e81e23~tplv-k3u1fbpfcp-watermark.awebp" alt="img"></p>
+<ul>
+<li>float+margin-left</li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/544ac1c6ec884ff18582faa348b69c70~tplv-k3u1fbpfcp-watermark.awebp" alt="img"></p>
+<ul>
+<li>父：display:flex + 子：flex:1</li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c8866bac770443b39c806150cdcc8a7c~tplv-k3u1fbpfcp-watermark.awebp" alt="img"></p>
+<ul>
+<li>grid </li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/688c3b7599614081b1df80a50ec2965f~tplv-k3u1fbpfcp-watermark.awebp" alt="img"></p>
+<h2 id="3-三栏布局-两边定宽中间自适应"><a href="#3-三栏布局-两边定宽中间自适应" class="headerlink" title="3. 三栏布局 两边定宽中间自适应"></a>3. 三栏布局 两边定宽中间自适应</h2><ul>
+<li>圣杯布局</li>
+</ul>
+<p>圣杯布局的center是放在最前面的，这样就符合了我们先加载主内容的逻辑</p>
+<p>三栏都设置成左浮动 float:left + 父元素设置为左右padding为左右栏的宽度 +对于中间，width：100%+ 对于左栏，position：relative，left：-自身宽度，mergin-left：-100% + 对于右栏position:relative, right：-自身宽度,  margin-left：-自身宽度</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2c3df7e23b8d4fbd96eeeccb4fc99215~tplv-k3u1fbpfcp-watermark.awebp" alt="img"></p>
+<ul>
+<li>双飞翼布局</li>
+</ul>
+<p>双飞翼布局是在圣杯布局基础上进一步升级来的</p>
+<p>盒子排列上，先写包裹中间的父盒子main再写leftright + 对于包裹中间的父盒子main设置float：left，width：100%；对于父盒子里面的实际中间栏，设置margin左右为左右两栏宽度+对于左右两栏也都设置左浮动，左边栏margin-left为-100%+右边栏margin-left为-自身宽度</p>
+<p>个人理解 左边栏这个margin-left：-100%就是左中右三栏父容器框宽度的100%</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/488a7974931f46d687075c30468286f1~tplv-k3u1fbpfcp-watermark.awebp" alt="img"></p>
+<ul>
+<li>float：left float：right+main：overflow：hidden 也就是float+bfc原理</li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/62fb7453443344149fcf27d551e63075~tplv-k3u1fbpfcp-watermark.awebp" alt="img"></p>
+<ul>
+<li>flex</li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4c00727559ed4833892b01d12193c621~tplv-k3u1fbpfcp-watermark.awebp" alt="img"></p>
+<ul>
+<li>grid</li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7e8d2ef98c4c4d718a10f91984c57e71~tplv-k3u1fbpfcp-watermark.awebp" alt="img"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Ashster</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/05/26/CSS%20%E5%B8%B8%E8%A7%81%E5%B8%83%E5%B1%80/">http://example.com/2021/05/26/CSS%20%E5%B8%B8%E8%A7%81%E5%B8%83%E5%B1%80/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">菜菜の小屋</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/CSS/">CSS</a><a class="post-meta__tags" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a></div><div class="post_share"><div class="social-share" data-image="/img/%E8%83%8C%E6%99%AF4.JPG" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2021/05/26/js%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90/"><img class="prev-cover" src="/img/%E8%83%8C%E6%99%AF4.JPG" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">JS运行机制</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/05/27/css2/" title="CSS拾遗（二）display属性"><img class="cover" src="/img/%E8%83%8C%E6%99%AF4.JPG" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-27</div><div class="title">CSS拾遗（二）display属性</div></div></a></div><div><a href="/2021/05/28/css3/" title="CSS布局（一）盒模型"><img class="cover" src="/img/%E8%83%8C%E6%99%AF4.JPG" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-28</div><div class="title">CSS布局（一）盒模型</div></div></a></div><div><a href="/2021/05/26/css1/" title="CSS拾遗（一）position属性"><img class="cover" src="/img/%E8%83%8C%E6%99%AF4.JPG" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-26</div><div class="title">CSS拾遗（一）position属性</div></div></a></div><div><a href="/2021/05/31/css4/" title="CSS布局（二）三种基础布局"><img class="cover" src="/img/%E8%83%8C%E6%99%AF4.JPG" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-31</div><div class="title">CSS布局（二）三种基础布局</div></div></a></div><div><a href="/2021/05/31/css5/" title="CSS布局（三）flex"><img class="cover" src="/img/%E8%83%8C%E6%99%AF4.JPG" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-31</div><div class="title">CSS布局（三）flex</div></div></a></div><div><a href="/2021/05/26/JS原型链/" title="JS原型链"><img class="cover" src="/img/%E8%83%8C%E6%99%AF4.JPG" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-26</div><div class="title">JS原型链</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/iconsun.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Ashster</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">38</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Ashster"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Ashster" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:825130866@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CSS-%E5%B8%B8%E8%A7%81%E5%B8%83%E5%B1%80"><span class="toc-number">1.</span> <span class="toc-text">CSS 常见布局</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD"><span class="toc-number">1.1.</span> <span class="toc-text">1.水平垂直居中</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1%E8%A1%8C%E5%86%85%E5%BC%8F"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1行内式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E5%9D%97%E7%BA%A7%EF%BC%8C%E5%B7%B2%E7%9F%A5%E5%AE%BD%E9%AB%98"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 块级，已知宽高</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E5%9D%97%E7%BA%A7-%E5%AE%BD%E9%AB%98%E6%9C%AA%E7%9F%A5"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3 块级 宽高未知</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%B8%A4%E6%A0%8F%E5%B8%83%E5%B1%80"><span class="toc-number">1.2.</span> <span class="toc-text">2. 两栏布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E4%B8%89%E6%A0%8F%E5%B8%83%E5%B1%80-%E4%B8%A4%E8%BE%B9%E5%AE%9A%E5%AE%BD%E4%B8%AD%E9%97%B4%E8%87%AA%E9%80%82%E5%BA%94"><span class="toc-number">1.3.</span> <span class="toc-text">3. 三栏布局 两边定宽中间自适应</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/09/16/%E7%AE%97%E6%B3%95%E7%AF%87-%E5%AD%97%E7%AC%A6%E4%B8%B2/" title="算法篇-字符串"><img src="/img/%E8%83%8C%E6%99%AF4.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="算法篇-字符串"/></a><div class="content"><a class="title" href="/2021/09/16/%E7%AE%97%E6%B3%95%E7%AF%87-%E5%AD%97%E7%AC%A6%E4%B8%B2/" title="算法篇-字符串">算法篇-字符串</a><time datetime="2021-09-16T08:36:29.000Z" title="发表于 2021-09-16 16:36:29">2021-09-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/12/%E7%AE%97%E6%B3%95%E7%AF%87-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" title="算法篇-动态规划"><img src="/img/%E8%83%8C%E6%99%AF4.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="算法篇-动态规划"/></a><div class="content"><a class="title" href="/2021/09/12/%E7%AE%97%E6%B3%95%E7%AF%87-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" title="算法篇-动态规划">算法篇-动态规划</a><time datetime="2021-09-12T07:46:21.000Z" title="发表于 2021-09-12 15:46:21">2021-09-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/10/http-https/" title="计算机网络 http&amp;https"><img src="/img/%E8%83%8C%E6%99%AF4.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机网络 http&amp;https"/></a><div class="content"><a class="title" href="/2021/09/10/http-https/" title="计算机网络 http&amp;https">计算机网络 http&amp;https</a><time datetime="2021-09-10T02:17:17.000Z" title="发表于 2021-09-10 10:17:17">2021-09-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/10/module/" title="模块化开发--CommonJs与ES Module"><img src="/img/%E8%83%8C%E6%99%AF4.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="模块化开发--CommonJs与ES Module"/></a><div class="content"><a class="title" href="/2021/08/10/module/" title="模块化开发--CommonJs与ES Module">模块化开发--CommonJs与ES Module</a><time datetime="2021-08-09T16:39:30.000Z" title="发表于 2021-08-10 00:39:30">2021-08-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/07/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%A4%8D%E4%B9%A04/" title="计算机网络复习4"><img src="/img/%E8%83%8C%E6%99%AF4.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机网络复习4"/></a><div class="content"><a class="title" href="/2021/07/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%A4%8D%E4%B9%A04/" title="计算机网络复习4">计算机网络复习4</a><time datetime="2021-07-01T03:59:38.000Z" title="发表于 2021-07-01 11:59:38">2021-07-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Ashster</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
